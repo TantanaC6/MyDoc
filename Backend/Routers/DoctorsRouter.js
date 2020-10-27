@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const verify = require('./Verification.js')
+const nodemailer = require("nodemailer");
+const smtpTransport = require("nodemailer-smtp-transport");
 
 dotenv.config();
 
@@ -58,7 +60,40 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ id: user.id }, process.env.SECRET_TOKEN)
     res.header('auth_token', token).send(token)
 })
-
+router.post('/sendemail',async (req, res) => {
+   await Doctors.findAll({where:{email:req.body.email}}).then((obj) => {
+      nodemailer.createTestAccount((err, email) => {
+        var transporter = nodemailer.createTransport(
+          smtpTransport({
+            service: "gmail",
+            port: 465,
+            secure: false,
+            host: "smtp.gmail.com",
+            auth: {
+              user: "",
+              pass: "",
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+          })
+        );
+  
+        let mailOptions = {
+          from: "",
+          to: `${req.body.email}`,
+          subject: "my Doc application",
+          text: `thanks u for sign in .`,
+        };
+        transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+            console.log(err);
+          }
+          res.send(info);
+        });
+      });
+    });
+  });
 
 router.put('/:id',verify, async (req, res) => {
 
