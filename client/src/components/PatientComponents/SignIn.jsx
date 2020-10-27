@@ -19,9 +19,12 @@ class SignIn extends Component {
   handleChange(e){
      this.setState({[e.target.name]:e.target.value})
   }
-  submit(){
-    
-  }
+
+ handleChange(e){
+   this.setState({z
+     
+   })
+ }
 
 
 
