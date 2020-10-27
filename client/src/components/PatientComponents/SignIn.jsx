@@ -14,6 +14,7 @@ class SignIn extends Component {
   handleChange(e){
      this.setState({[e.target.name]:e.target.value})
   }
+
   submit(e){
     e.preventDefault();
     const newPatient = {
@@ -30,6 +31,7 @@ class SignIn extends Component {
      .then(res=>{console.log(res)})
      .catch(err=>{throw err})
   }
+
 
 
 
