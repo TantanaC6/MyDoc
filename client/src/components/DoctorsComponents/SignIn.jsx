@@ -5,24 +5,72 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      email: "",
+      name: "",
       password: "",
-      users: [],
+      email: "",
+      address: "",
+      city: "",
+      phoneNumber: "",
+      category: "",
+      cabineName: "",
+      urlCertificate: "",
+      Patients: "",
+      accountBanc: "",
+      price: "",
       view: "main",
-
-      Data: [],
+      users: [],
     };
-    this.changeView = this.changeView.bind(this);
+    this.adduser= this.adduser.bind(this);
+    this
   }
+
+  // componentDidMount() {
+  //   axios
+  //     .get("http://localhost:3000/patients")
+  //     .then((res) => {
+  //       this.setState({
+  //         name: "",
+  //         password: "",
+  //         email: "",
+  //         address: "",
+  //         city: "",
+  //         phoneNumber: "",
+  //         category: "",
+  //         cabineName: "",
+  //         urlCertificate: "",
+  //         Patients: "",
+  //         accountBanc: "",
+  //         price: "",
+  //         view: "main",
+  //         users: res.data,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err, "errrrr"));
+  // }
 
   handleChange(e) {
     this.setState({
       [e.target.id]: e.target.value,
     });
   }
-  changeView(e) {
-    this.setState({ view: e.target.value });
+  adduser(e){
+    e.preventDefault(); 
+    const newdoctor = {
+      name: this.state.name,
+              password: this.state.password,
+              email: this.state.email,
+              address: this.state.address,
+              city: this.state.city,
+              phoneNumber: this.state.phoneNumber,
+              category: this.state.category,
+              cabineName: this.state.cabineName,
+              urlCertificate: this.state.urlCertificate,
+              Patients: this.state.Patients,
+              accountBanc: this.state.accountBanc,
+              price: this.state.price,
+
+    }
+    axios.post("http://localhost:3000/patients",newdoctor).then((res,req) => {console.log(req)})
   }
 
   render() {
@@ -30,6 +78,7 @@ class SignIn extends Component {
       return (
         <div>
           <center>
+            <form onSubmit={(e)=>this.adduser(e)}>
             <input
               type="text"
               id="fisrrname"
@@ -93,7 +142,8 @@ class SignIn extends Component {
               onChange={this.handleChange.bind(this)}
             />
             <br></br> <br></br>
-            <input type="button" value="signin" onClick={this.changeView} />
+            <input type="submit" value="signin" />
+            </form>
           </center>
         </div>
       );
