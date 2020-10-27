@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PatientHome from "./PatientHome.jsx";
-
+import Axios from "axios";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -11,19 +11,22 @@ class SignIn extends Component {
       email:"",
       city:"",
       numb:"",
-      bankAcc:""
+      bankAcc:"",
+      
     };
-    this.changeView = this.changeView.bind(this);
+   this.handleChange=this.handleChange.bind(this)
   }
- handleChange(e){
-   this.setState({
-     
-   })
- }
+  handleChange(e){
+     this.setState({[e.target.name]:e.target.value})
+  }
+  submit(){
+    
+  }
+
 
 
   render() {
-    if (this.state.view === "main") {
+    console.log(this.state)
       return (
         <div>
           <center>
@@ -31,28 +34,32 @@ class SignIn extends Component {
               type="text"
               id=""
               placeholder="Fullname"
-              
+              name="name"
+              onChange={this.handleChange}
             />
             <br></br> <br></br>
             <input
               type="text"
               id=""
               placeholder="adress"
-           
-            />
+           name="adress"
+           onChange={this.handleChange}
+/>
             <br></br> <br></br>
             <input
               type="text"
               id="email"
               placeholder="Email"
-              onChange={this.handleChange.bind(this)}
+              name="email"
+              onChange={this.handleChange}
             />
             <br></br> <br></br>
             <input
               type="password"
               id="password"
               placeholder="Password"
-              onChange={this.handleChange.bind(this)}
+              name="password"
+              onChange={this.handleChange}
             />
             <br></br> <br></br>
            
@@ -60,30 +67,31 @@ class SignIn extends Component {
               type="text"
               id=""
               placeholder="city"
-              onChange={this.handleChange.bind(this)}
+              name="city"
+              onChange={this.handleChange}
             />
             <br></br> <br></br>
             <input
               type="text"
               id=""
               placeholder="phoneNumber"
-              onChange={this.handleChange.bind(this)}
+              name="num"
+              onChange={this.handleChange}
             />
             <br></br> <br></br>
             <input
               type="text"
               id=""
               placeholder="accountBanc"
-              onChange={this.handleChange.bind(this)}
+              name="bankAcc"
+              onChange={this.handleChange}
             />
             <br></br> <br></br>
-            <input type="button" value="signin" onClick={this.changeView} />
+            <input type="button" value="signin" onClick={this.submit} />
           </center>
         </div>
       );
-    } else if (this.state.view === "signin") {
-      return <PatientHome />;
-    }
-  }
+    } 
+  
 }
 export default SignIn;
