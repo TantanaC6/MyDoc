@@ -11,11 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 //Router
-app.use("/patients",require('./backend/Routers/PatientsRouter.js'))
-app.use("/doctors",require('./backend/Routers/DoctorsRouter.js'))
-app.use("/messages",require('./backend/Routers/MessagesRouter.js'))
-app.use("/appointments",require('./backend/Routers/AppointmentsRouter.js'))
-app.use("/doctors",require('./backend/Routers/DoctorsRouter.js'))
+app.use("/patients",require('./Backend/Routers/PatientsRouter.js'))
+app.use("/doctors",require('./Backend/Routers/DoctorsRouter.js'))
+app.use("/messages",require('./Backend/Routers/MessagesRouter.js'))
+app.use("/appointments",require('./Backend/Routers/AppointmentsRouter.js'))
+app.use("/reports",require('./Backend/Routers/ReportsRouter.js'))
 
 
 //server listening
