@@ -5,24 +5,22 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      email: "",
-      password: "",
-      users: [],
-      view: "main",
-      Data: [],
+      name:"",
+      password:"",
+      adress:"",
+      email:"",
+      city:"",
+      numb:"",
+      bankAcc:""
     };
     this.changeView = this.changeView.bind(this);
   }
+ handleChange(e){
+   this.setState({
+     
+   })
+ }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
-  }
-  changeView(e) {
-    this.setState({ view: e.target.value });
-  }
 
   render() {
     if (this.state.view === "main") {
@@ -31,16 +29,16 @@ class SignIn extends Component {
           <center>
             <input
               type="text"
-              id="fisrrname"
-              placeholder="Firstname"
-              onChange={this.handleChange.bind(this)}
+              id=""
+              placeholder="Fullname"
+              
             />
             <br></br> <br></br>
             <input
               type="text"
-              id="Lastname"
-              placeholder="Lastname"
-              onChange={this.handleChange.bind(this)}
+              id=""
+              placeholder="adress"
+           
             />
             <br></br> <br></br>
             <input
@@ -57,10 +55,25 @@ class SignIn extends Component {
               onChange={this.handleChange.bind(this)}
             />
             <br></br> <br></br>
+           
             <input
-              type="repeatpassword"
-              id="repeatpassword"
-              placeholder="repeatpassword"
+              type="text"
+              id=""
+              placeholder="city"
+              onChange={this.handleChange.bind(this)}
+            />
+            <br></br> <br></br>
+            <input
+              type="text"
+              id=""
+              placeholder="phoneNumber"
+              onChange={this.handleChange.bind(this)}
+            />
+            <br></br> <br></br>
+            <input
+              type="text"
+              id=""
+              placeholder="accountBanc"
               onChange={this.handleChange.bind(this)}
             />
             <br></br> <br></br>
