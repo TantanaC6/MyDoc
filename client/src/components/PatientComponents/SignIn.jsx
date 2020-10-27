@@ -16,7 +16,7 @@ class SignIn extends Component {
     this.changeView = this.changeView.bind(this);
   }
  handleChange(e){
-   this.setState({
+   this.setState({z
      
    })
  }
