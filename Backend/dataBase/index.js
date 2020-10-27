@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('mydoc', 'root', '123456', {
+const sequelize = new Sequelize('mydoc', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
-    logging: false
+    logging: false,
+    database: "mydoc"
 });
 sequelize
     .authenticate()
