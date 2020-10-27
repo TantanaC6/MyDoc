@@ -1,23 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const Reports = require('../models/Reportschema.js');
+
+const Appointments = require('../models/AppointmentSchema.js');
 
 const verify = require('./Verification.js')
 
 
 
 router.get('/',verify, async (req, res) => {
-    await Reports.findAll().then((reports) => res.json(reports))
+    await Appointments.findAll().then((appointments) => res.json(appointments))
     .catch((err) => console.log(err))
 })
 
 router.get('/:id',verify, async (req, res) => {
-    await Reports.findByPk( req.params.id).then((reports) => res.json(reports))
+    await Appointments.findByPk( req.params.id).then((appointments) => res.json(appointments))
     .catch((err) => console.log(err))
 })
 
 router.post('/register', async (req, res) => {
-    await Reports.create({
+    await Appointments.create({
         patientId: req.body.patientId,
         doctorId: req.body.doctorId,
         check : req.body.check,
@@ -28,19 +29,19 @@ router.post('/register', async (req, res) => {
 })
 
 router.put('/:id',verify, async (req, res) => {
-    Reports.findByPk(req.params.id).then((reports) => {
-        Reports.update({
+    Appointments.findByPk(req.params.id).then((appointments) => {
+        appointments.update({
 
-        }).then((reports) => {
-            res.json(reports);
+        }).then((appointments) => {
+            res.json(appointments);
         });
     })
     .catch((err) => console.log(err))
 })
 
 router.delete('/:id',verify, async (req, res) => {
-    await Reports.findByPk(req.params.id).then((reports) => {
-        reports.destroy();
+    await Appointments.findByPk(req.params.id).then((appointments) => {
+        appointments.destroy();
     }).then(() => {
         res.json("deleted");
     })
@@ -48,7 +49,7 @@ router.delete('/:id',verify, async (req, res) => {
 });
 
 router.delete('/', verify,async (req, res) => {
-    await Reports.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
+    await Appointments.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 });
 

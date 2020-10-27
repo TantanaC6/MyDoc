@@ -13,6 +13,10 @@ app.use(bodyParser.json())
 //Router
 app.use("/patients",require('./backend/Routers/PatientsRouter.js'))
 app.use("/doctors",require('./backend/Routers/DoctorsRouter.js'))
+app.use("/messages",require('./backend/Routers/MessagesRouter.js'))
+app.use("/appointments",require('./backend/Routers/AppointmentsRouter.js'))
+app.use("/doctors",require('./backend/Routers/DoctorsRouter.js'))
+
 
 //server listening
 const port = 3000

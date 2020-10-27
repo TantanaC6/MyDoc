@@ -4,18 +4,18 @@ const Doctors = require('../models/DoctorSchema.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
-const verifie = require('./Verification.js')
+const verify = require('./Verification.js')
 
 dotenv.config();
 
 const {registerDocValidation , loginDocValidation} = require('./DoctorValidation.js')
 
-router.get('/',verifie, async (req, res) => {
+router.get('/',verify, async (req, res) => {
     await Doctors.findAll().then((doctors) => res.json(doctors))
     .catch((err) => console.log(err))
 })
 
-router.get('/:id',verifie, async (req, res) => {
+router.get('/:id',verify, async (req, res) => {
     await Doctors.findByPk( req.params.id).then((doctors) => res.json(doctors))
     .catch((err) => console.log(err))
 })
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
     res.header('auth_token',token).send(token)
 })
 
-router.put('/:id',verifie, async (req, res) => {
+router.put('/:id',verify, async (req, res) => {
     Doctors.findByPk(req.params.id).then((doctors) => {
         doctors.update({
  name:req.body.name,
@@ -77,7 +77,7 @@ router.put('/:id',verifie, async (req, res) => {
     .catch((err) => console.log(err))
 })
 
-router.delete('/:id',verifie, async (req, res) => {
+router.delete('/:id',verify, async (req, res) => {
     await Doctors.findByPk(req.params.id).then((doctors) => {
         doctors.destroy();
     }).then(() => {
@@ -86,7 +86,7 @@ router.delete('/:id',verifie, async (req, res) => {
     .catch((err) => console.log(err))
 });
 
-router.delete('/', verifie,async (req, res) => {
+router.delete('/', verify,async (req, res) => {
     await Doctors.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 });
