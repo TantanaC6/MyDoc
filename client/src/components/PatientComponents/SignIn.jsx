@@ -5,22 +5,30 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name:"",
-      password:"",
-      adress:"",
-      email:"",
-      city:"",
-      numb:"",
-      bankAcc:"",
+     
       
     };
    this.handleChange=this.handleChange.bind(this)
+   this.submit=this.submit.bind(this)
   }
   handleChange(e){
      this.setState({[e.target.name]:e.target.value})
   }
-  submit(){
+  submit(e){
+    e.preventDefault();
+    const newPatient = {
+      name: this.state.name,
+      password: this.state.password,
+      email:this.state.email,
+      adress:this.state.adress,
+      city:this.state.city,
+      phoneNumber:this.state.phoneNumber,
+      accountBanc:this.state.accountBanc
+    };
     
+    Axios.post("http://localhost:3000/patients/register",newPatient)
+     .then(res=>{console.log(res)})
+     .catch(err=>{throw err})
   }
 
 
@@ -75,7 +83,7 @@ class SignIn extends Component {
               type="text"
               id=""
               placeholder="phoneNumber"
-              name="num"
+              name="phoneNumber"
               onChange={this.handleChange}
             />
             <br></br> <br></br>
@@ -83,11 +91,11 @@ class SignIn extends Component {
               type="text"
               id=""
               placeholder="accountBanc"
-              name="bankAcc"
+              name="accountBanc"
               onChange={this.handleChange}
             />
             <br></br> <br></br>
-            <input type="button" value="signin" onClick={this.submit} />
+            <input type="button" value="signin" onClick={ this.submit} />
           </center>
         </div>
       );
