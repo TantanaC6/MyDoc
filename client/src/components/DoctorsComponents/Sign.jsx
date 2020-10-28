@@ -3,7 +3,7 @@ import DoctorHome from "./DoctorHome.jsx";
 import Profile from "./Profile.jsx"
 import axios from "axios";
 
-class SignIn extends Component {
+class Sign extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,6 +57,7 @@ class SignIn extends Component {
     };
     axios.post("http://localhost:3000/doctors/register", newDoctor)
       .then((res) => {
+        console.log(res.data.id)
        this.setState({ 
         userId:res.data.id,
         name: "",
@@ -73,7 +74,6 @@ class SignIn extends Component {
       })
     })
    axios.post("http://localhost:3000/doctors/sendemail",newDoctor)
-      .then(() => this.componentDidMount());
   }
   
   render() {
@@ -84,7 +84,7 @@ class SignIn extends Component {
          <form onSubmit={(e)=>this.addDoctor(e)}> 
          <input type="text" placeholder="name" onChange={(e)=>this.setState({name: e.target.value})} value={this.state.name}/><br></br>
          <input type="password" placeholder="password" onChange={(e)=>this.setState({password: e.target.value})} value={this.state.password}/><br></br>
-         <input type="text" placeholder=" email" onChange={(e)=>this.setState({ email: e.target.value})} value={this.state. email}/><br></br>
+         <input type="email" placeholder=" email" onChange={(e)=>this.setState({ email: e.target.value})} value={this.state. email}/><br></br>
          <input type="text" placeholder="address" onChange={(e)=>this.setState({address: e.target.value})} value={this.state.address}/><br></br>
          <input type="text" placeholder="city" onChange={(e)=>this.setState({city: e.target.value})} value={this.state.city}/><br></br>
          <input type="text" placeholder="phoneNumber" onChange={(e)=>this.setState({phoneNumber: e.target.value})} value={this.state.phoneNumber}/><br></br>
@@ -102,10 +102,11 @@ class SignIn extends Component {
      return (
        <div>
          <Profile userId={this.state.userId}/>
+         
        </div>
      )
    }
      
   }     
 }
-export default SignIn;
+export default Sign;
