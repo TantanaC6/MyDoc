@@ -43,7 +43,6 @@ router.post('/register', async (req, res) => {
         category: req.body.category,
         cabineName: req.body.cabineName,
         urlCertificate: req.body.urlCertificate,
-        Patients: req.body.Patients,
         accountBanc: req.body.accountBanc,
         price: req.body.price
     })

@@ -6,7 +6,6 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      view: "",
       id: 0,
     }
     this.login=this.login.bind(this);
@@ -15,7 +14,6 @@ class Login extends Component {
     this.setState({
       email:"",
       password:"",
-      view: "",
       id: 0 ,
     })
   }
@@ -32,13 +30,12 @@ class Login extends Component {
       this.setState({
         email:"",
         password:"",
-        view: "profile",
         id: res.data.id
       })
     })
   }
   render() {
-    if (this.state.view === "" && this.state.id === 0) {
+    if (this.state.id === 0) {
       return (
         <div>
           <center>
@@ -52,7 +49,7 @@ class Login extends Component {
           </center>
         </div>
       );
-    } else if (this.state.view === "profile" && this.state.id !== 0 ) {
+    } else if (this.state.id !== 0 ) {
       return <Profile userId={this.state.id}/>;
     }
   }
