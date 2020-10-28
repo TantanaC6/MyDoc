@@ -21,11 +21,11 @@ class Login extends Component {
   }
   login(e){
     e.preventDefault();
-    const doctor = {
+    const patient = {
       email: this.state.email,
       password: this.state.password
     }
-    axios.post('http://localhost:3000/patients/login', doctor).then((res,req)=>{
+    axios.post('http://localhost:3000/patients/login', patient).then((res,req)=>{
       const token = res.headers.auth_token
       localStorage.setItem('auth_token', token)
       localStorage.getItem('auth_token')
