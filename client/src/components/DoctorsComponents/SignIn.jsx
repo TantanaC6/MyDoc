@@ -18,20 +18,32 @@ class SignIn extends Component {
       Patients: "",
       accountBanc: "",
       price: "",
-      view: "main",
-      users: [],
+      view: "",
     };
-    this.adduser = this.adduser.bind(this);
+    this.addDoctor = this.addDoctor.bind(this);
+  }
+  componentDidMount() {
+    this.setState({ 
+      name: "",
+      password: "",
+      email: "",
+      address: "",
+      city: "",
+      phoneNumber: "",
+      category: "",
+      cabineName: "",
+      urlCertificate: "",
+      Patients: "",
+      accountBanc: "",
+      price: "",
+      view: "",
+    })
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
-  }
-  adduser(e) {
+  
+  addDoctor(e) {
     e.preventDefault();
-    const newdoctor = {
+    const newDoctor = {
       name: this.state.name,
       password: this.state.password,
       email: this.state.email,
@@ -45,89 +57,41 @@ class SignIn extends Component {
       accountBanc: this.state.accountBanc,
       price: this.state.price,
     };
-    axios
-      .post("http://localhost:3000/doctors/register", newdoctor)
-      .then((res, req) => {
-        console.log(req);
-      });
+    axios.post("http://localhost:3000/doctors/register", newDoctor)
+      .then(() => this.componentDidMount());
+   axios.post("http://localhost:3000/doctors/sendemail",newDoctor)
+      .then(() => this.componentDidMount());
   }
-
+  
   render() {
-    if (this.state.view === "main") {
+    if (this.state.view === "") {
       return (
         <div>
           <center>
-            <form onSubmit={(e) => this.adduser(e)}>
-              <input
-                type="text"
-                id="fisrrname"
-                placeholder="Firstname"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="text"
-                id="Lastname"
-                placeholder="Lastname"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="text"
-                id="email"
-                placeholder="Email"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="CabineName"
-                id="CabineName"
-                placeholder="CabineName"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="text"
-                id="phonenumber"
-                placeholder="phonenumber"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="text"
-                id="AccountBanque"
-                placeholder="AccountBanque"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                type="text"
-                id="CityName"
-                placeholder="CityName"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input
-                id="files"
-                name="files"
-                placeholder="Url Cerfificat"
-                onChange={this.handleChange.bind(this)}
-              />
-              <br></br> <br></br>
-              <input type="submit" value="signin" />
+           <form onSubmit={(e)=>this.addDoctor(e)}> 
+           <input type="text" placeholder="name" onChange={(e)=>this.setState({name: e.target.value})} value={this.state.name}/><br></br>
+           <input type="text" placeholder="password" onChange={(e)=>this.setState({password: e.target.value})} value={this.state.password}/><br></br>
+           <input type="text" placeholder=" email" onChange={(e)=>this.setState({ email: e.target.value})} value={this.state. email}/><br></br>
+           <input type="text" placeholder="address" onChange={(e)=>this.setState({address: e.target.value})} value={this.state.address}/><br></br>
+           <input type="text" placeholder="city" onChange={(e)=>this.setState({city: e.target.value})} value={this.state.city}/><br></br>
+           <input type="text" placeholder="phoneNumber" onChange={(e)=>this.setState({phoneNumber: e.target.value})} value={this.state.phoneNumber}/><br></br>
+           <input type="text" placeholder="category" onChange={(e)=>this.setState({category: e.target.value})} value={this.state.category}/><br></br>
+           <input type="text" placeholder="cabineName" onChange={(e)=>this.setState({cabineName: e.target.value})} value={this.state.cabineName}/><br></br>
+           <input type="text" placeholder="urlCertificate" onChange={(e)=>this.setState({urlCertificate: e.target.value})} value={this.state.urlCertificate}/><br></br>
+           <input type="text" placeholder="Patients" onChange={(e)=>this.setState({Patients: e.target.value})} value={this.state.Patients}/><br></br>
+           <input type="text" placeholder="accountBanc" onChange={(e)=>this.setState({accountBanc: e.target.value})} value={this.state.accountBanc}/><br></br>
+           <input type="text" placeholder="price" onChange={(e)=>this.setState({price: e.target.value})} value={this.state.price}/><br></br>
+           <input type="submit" value="SignIn" onChange={(e)=>this.setState({view:this.state.view = "signin"})} />
             </form>
           </center>
         </div>
       );
     } else if (this.state.view === "signin") {
-      return <DoctorHome />;
+      return(
+      <div>
+      <DoctorHome />
+      </div> 
+      )
     }
   }
 }
