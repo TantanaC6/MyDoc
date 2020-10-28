@@ -21,7 +21,6 @@ router.get('/:id',verify , async (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-    console.log(req.body)
     const {error} = registerPatValidation(req.body)
     if(error) return res.send(error.details[0].message)
     const emailExist = await Patients.findOne({ where: {email: req.body.email}})
