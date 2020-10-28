@@ -54,11 +54,11 @@ router.post('/login', async (req, res) => {
     const { error } = loginDocValidation(req.body)
     if (error) return res.send(error.details[0].message)
     const user = await Doctors.findOne({ where: { email: req.body.email } })
-    if (!user) return res.status(400).send('Email is not found')
+    if (!user) return res.send('Email is not found')
     const validPass = await bcrypt.compare(req.body.password, user.password)
-    if (!validPass) return res.status(400).send('Invalid password ')
+    if (!validPass) return res.send('Invalid password ')
     const token = jwt.sign({ id: user.id }, process.env.SECRET_TOKEN)
-    res.header('auth_token', token).send(token)
+    return res.status(200).header('auth_token', token).json({ id: user.id });
 })
 router.post('/sendemail',async (req, res) => {
    await Doctors.findAll({where:{email:req.body.email}}).then((obj) => {

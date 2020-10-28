@@ -3,13 +3,18 @@ import React, { Component } from "react";
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+      id:this.props.userId
+    };
   }
   render() {
-    return
-     <div>
-
-    </div>;
+    return(
+      <div>
+     <h1>{this.state.id}</h1>
+    </div>
+    )
+ 
   }
 }
 

@@ -5,7 +5,8 @@ class Profile extends Component {
         super(props);
         this.state = {
            view:"profile",
-           types:""
+           types:"",
+           id:this.props.profileInfo.userId
         }
     }
   
