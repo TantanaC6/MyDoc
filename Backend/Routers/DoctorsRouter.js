@@ -70,8 +70,8 @@ router.post('/sendemail',async (req, res) => {
             secure: false,
             host: "smtp.gmail.com",
             auth: {
-              user: "",
-              pass: "",
+              user: "mydocapplication123456@gmail.com",
+              pass: "Mydocapplication123",
             },
             tls: {
               rejectUnauthorized: false,
@@ -80,7 +80,7 @@ router.post('/sendemail',async (req, res) => {
         );
   
         let mailOptions = {
-          from: "",
+          from: "mydocapplication123456@gmail.com",
           to: `${req.body.email}`,
           subject: "my Doc application",
           text: `thanks u for sign in .`,
