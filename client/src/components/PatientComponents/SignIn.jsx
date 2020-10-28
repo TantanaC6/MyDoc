@@ -41,7 +41,7 @@ class SignIn extends Component {
       phoneNumber : this.state.phoneNumber ,
       accountBanc: this.state.accountBanc
     };
-    axios.post("http://localhost:3000/patients/register", newPatient)
+    axios.post("http://localhost:3000/patients/register", newPatient) 
       .then(() => this.componentDidMount());
   }
   
