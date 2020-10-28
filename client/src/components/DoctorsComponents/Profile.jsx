@@ -5,14 +5,16 @@ class Profile extends Component {
     super(props);
     this.state = {
 
+      id:this.props.userId
     };
   }
   render() {
-    return
-    <div>
-      
-
+    return(
+      <div>
+     <h1>{this.state.id}</h1>
     </div>
+    )
+ 
   }
 }
 
