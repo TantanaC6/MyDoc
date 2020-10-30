@@ -48,7 +48,6 @@ class Login extends Component {
       return (
         <div>
           <center>
-          <p>Doctor Login</p>
             <br></br> <br></br>
            <form onSubmit={(e)=>this.login(e)}>
              <input type="text" placeholder="Email" onChange={(e)=>this.setState({email: e.target.value})} value={this.state.email}/><br></br> <br></br>
