@@ -13,14 +13,16 @@ class SignIn extends Component {
       city : "",
       phoneNumber : "" ,
       accountBanc: "",
-      view : "signin" 
+      view : "signin" ,
+      next:false
     };
     this.addPatient = this.addPatient.bind(this);
   }
   
 handleChnage(){
   this.setState({
-    view:"profile"
+    view:"profile", 
+   
   })
 }
   
@@ -41,8 +43,8 @@ handleChnage(){
   }
   
   render() {
-    if(this.state.view==="profile" && (this.state.name.length)  && (this.state.password.length)  && (this.state.address.length) && (this.state.city.length) ){
-      return <Profile name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber} />
+    if((this.state.view==="profile")  ){
+      return <Profile name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber} accountBanc={this.state.accountBanc} />
     }else{
       return (
         <div>
@@ -55,7 +57,7 @@ handleChnage(){
            <input type="text" placeholder="city" onChange={(e)=>this.setState({city: e.target.value})} value={this.state.city}/><br></br>
            <input type="text" placeholder="phoneNumber" onChange={(e)=>this.setState({phoneNumber: e.target.value})} value={this.state.phoneNumber}/><br></br>  
            <input type="text" placeholder="accountBanc" onChange={(e)=>this.setState({accountBanc: e.target.value})} value={this.state.accountBanc}/><br></br>
-           <input type="submit" value="SignIn" onChange/>
+           <input type="submit" value="SignIn"/>
             </form>
           </center>
         </div>
