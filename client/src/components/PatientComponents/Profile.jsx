@@ -11,7 +11,9 @@ class Profile extends Component {
            email:this.props.email,
            address:this.props.address,
            city:this.props.city,
-           phoneNumber:this.props.phoneNumber
+           phoneNumber:this.props.phoneNumber,
+           accountBanc:this.props.accountBanc,
+           patientId:this.props.userId
         }
     }
    
@@ -22,11 +24,11 @@ class Profile extends Component {
           this.setState({ view:"messages"})
     }
     render() { 
-      console.log(this.state)
+      console.log(this.state.patientId)
       if(this.state.view==="messages"){
             return <Messages/>
         } if(this.state.book===true){
-              return <SelectTypeOfDoctor/>
+              return <SelectTypeOfDoctor />
         }else{
             return (
                 <div >
