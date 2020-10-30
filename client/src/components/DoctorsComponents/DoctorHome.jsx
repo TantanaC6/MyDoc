@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Login from "./Login.jsx";
 import Sign from "./Sign.jsx";
 
+
 class DoctorHome extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,9 @@ class DoctorHome extends Component {
       return (
         <div className="bg">
           <div>
+            <form>
             <center>
+            <h1>Welcome Doctor</h1>
               <button className="btn" value="login" onClick={this.changeView}>
                 Login
               </button>
@@ -28,9 +31,7 @@ class DoctorHome extends Component {
                 SignIn
               </button>
             </center>
-            <center>
-              <p>Hello</p>
-            </center>
+            </form>
           </div>
         </div>
       );

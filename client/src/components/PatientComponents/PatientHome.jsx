@@ -20,7 +20,9 @@ class PatientHome extends Component {
             return (
               <div className="bg">
                 <div>
+                  <form>
                   <center>
+                  <h1>Welcome Patient</h1>
                     <button className="btn" value="login" onClick={this.changeView}>
                       Login
                     </button>
@@ -28,9 +30,7 @@ class PatientHome extends Component {
                       SignIn
                     </button>
                   </center>
-                  <center>
-                    <p>Hello</p>
-                  </center>
+                    </form>
                 </div>
               </div>
             );
