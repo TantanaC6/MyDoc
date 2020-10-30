@@ -38,7 +38,8 @@ class Login extends Component {
     })
   }
   render() {
-    if (this.state.view === "" && this.state.id === 0) {
+    console.log(this.state.id)
+    if (this.state.id === 0) {
       return (
         <div>
           <center>
@@ -51,9 +52,9 @@ class Login extends Component {
            </form>
           </center>
         </div>
-      );
-    } else if (this.state.view === "profile" && this.state.id !== 0 ) {
-      return <Profile userId={this.state.id}/>;
+      )
+    } else  {
+      return <Profile userId={this.state.id} email={this.state.email}/>;
     }
   }
 }

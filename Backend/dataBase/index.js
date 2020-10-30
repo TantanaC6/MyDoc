@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('mydoc', 'root', '123456', {
+const sequelize = new Sequelize('mydoc', 'root', 'root', {
 
 
     host: 'localhost',
