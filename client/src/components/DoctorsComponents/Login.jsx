@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Profile from "./Profile.jsx";
+import NavBar from "./NavBar.jsx";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +48,6 @@ class Login extends Component {
       return (
         <div>
           <center>
-          <p>Doctor Login</p>
             <br></br> <br></br>
            <form onSubmit={(e)=>this.login(e)}>
              <input type="text" placeholder="Email" onChange={(e)=>this.setState({email: e.target.value})} value={this.state.email}/><br></br> <br></br>
@@ -61,7 +60,7 @@ class Login extends Component {
     } else if (value !== 0 ) {
       return (
         <div>
-      <Profile userId={value}/>
+      <NavBar userId={value}/>
       </div>
       )
     }

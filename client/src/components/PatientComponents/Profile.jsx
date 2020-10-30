@@ -1,39 +1,47 @@
 import React, { Component } from 'react';
-import Messages from './Messages.jsx'
+import Messages from './Messages.jsx';
+import SelectTypeOfDoctor from "./SelectTypeOfDoctor.jsx"
 class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          book:false,
            view:"profile",
-           types:"",
-           id:this.props.profileInfo.userId
+           name:this.props.name,
+           email:this.props.email,
+           address:this.props.address,
+           city:this.props.city,
+           phoneNumber:this.props.phoneNumber
         }
     }
-  
+   
+  book(){
+    this.setState({book:!this.state.book})
+  }
     message(){
-          this.setState({view:"messages"})
+          this.setState({ view:"messages"})
     }
     render() { 
+      console.log(this.state)
       if(this.state.view==="messages"){
             return <Messages/>
-        } else{
+        } if(this.state.book===true){
+              return <SelectTypeOfDoctor/>
+        }else{
             return (
-                <div>
+                <div >
             <ul>
-  
+  <li className="userName">     {this.state.name}                  </li>
   <li onClick={this.message.bind(this)}><a href="#news">Messages</a></li>
   <li className="dropdown">
-    <a href="javascript:void(0)" className="dropbtn">Book an appointment</a>
-    <div className="dropdown-content">
-      <a href="#">Dentist</a>
-      <a href="#">Psychologist</a>
-      <a href="#">Ophthalmologist</a>
-      <a href="#">Gastroenterologist</a>
+    <a href="#" className="dropbtn" onClick={this.book.bind(this)} >Book an appointment</a>
     
-    </div>
   </li>
 </ul>
-                   
+            <div> email: {this.state.email}</div>
+            <div> address :{this.state.address}</div>   
+            <div> city : {this.state.city}</div>        
+            <div> phone Number {this.state.phoneNumber}</div>   
                 </div>
             );
         }
