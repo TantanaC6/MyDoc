@@ -6,8 +6,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      view: "",
-      id: 0,
+      userId: 0,
     }
     this.login=this.login.bind(this);
   }
@@ -15,8 +14,7 @@ class Login extends Component {
     this.setState({
       email:"",
       password:"",
-      view: "",
-      id: 0 ,
+      userId: 0 ,
     })
   }
   login(e){
@@ -26,19 +24,27 @@ class Login extends Component {
       password: this.state.password
     }
     axios.post('http://localhost:3000/doctors/login', doctor).then((res,req)=>{
-      const token = res.headers.auth_token
-      localStorage.setItem('auth_token', token)
-      localStorage.getItem('auth_token')
-      this.setState({
-        email:"",
-        password:"",
-        view: "profile",
-        id: res.data.id
-      })
+      if(typeof res.data === "string" ){
+        alert("check again please !")
+        this.componentDidMount()
+      }
+      else{
+        console.log(res.data)
+        const token = res.headers.auth_token
+        localStorage.setItem('auth_token', token)
+        localStorage.getItem('auth_token')
+        this.setState({
+          email:"",
+          password:"",
+          userId: res.data.id
+        })
+      } 
     })
   }
   render() {
-    if (this.state.view === "" && this.state.id === 0) {
+    const value = this.state.userId
+    
+    if (value === 0 ) {
       return (
         <div>
           <center>
@@ -51,9 +57,13 @@ class Login extends Component {
            </form>
           </center>
         </div>
-      );
-    } else if (this.state.view === "profile" && this.state.id !== 0 ) {
-      return <Profile userId={this.state.id}/>;
+      )
+    } else if (value !== 0 ) {
+      return (
+        <div>
+      <Profile userId={value}/>
+      </div>
+      )
     }
   }
 }
