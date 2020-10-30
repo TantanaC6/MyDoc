@@ -14,12 +14,14 @@ class SignIn extends Component {
       phoneNumber : "" ,
       accountBanc: "",
       view : "signin" ,
-      next:false
+      
     };
     this.addPatient = this.addPatient.bind(this);
+    this.handleChnage=this.handleChnage.bind(this)
   }
   
-handleChnage(){
+handleChnage(e){
+  e.preventDefault()
   this.setState({
     view:"profile", 
    
@@ -39,12 +41,12 @@ handleChnage(){
       
     };
     axios.post("http://localhost:3000/patients/register", newPatient) 
-      .then(() => this.handleChnage());
+      .then(() => this.handleChnage(e));
   }
   
   render() {
-    if((this.state.view==="profile")  ){
-      return <Profile name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber} accountBanc={this.state.accountBanc} />
+    if((this.state.view==="profile") &&(this.state.accountBanc.length) ){
+      return <Profile name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber}  />
     }else{
       return (
         <div>

@@ -19,6 +19,13 @@ router.get('/:id',verify , async (req, res) => {
     await Patients.findByPk(req.params.id).then((patients) => res.json(patients))
     .catch((err) => console.log(err))
 })
+router.post("/profile",async(req,res)=>{
+    const patient= await Patients.findOne({where:{email:req.body.email}})
+    const user=patient.dataValues
+    console.log(user)
+    if(!patient) return res.status(400).send("invalid patient")
+    if(user)  return res.status(200).json(user)
+})
 
 router.post('/register', async (req, res) => {
     const {error} = registerPatValidation(req.body)
