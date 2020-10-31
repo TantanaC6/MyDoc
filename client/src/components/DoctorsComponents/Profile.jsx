@@ -27,7 +27,7 @@ class Profile extends Component {
  }
  cancel(e,id){
    e.preventDefault()
-   app = {
+   const app = {
      check : "cancel"
    }
    axios.put(`http://localhost:3000/appointments/${id}`,app).then(() => {
@@ -36,7 +36,7 @@ class Profile extends Component {
  }
  accept(e,id){
   e.preventDefault()
-  app = {
+  const app = {
     check : "accept"
   }
   axios.put(`http://localhost:3000/appointments/${id}`,app).then(() => {
@@ -52,7 +52,7 @@ class Profile extends Component {
       <li>Phone : {item.phoneNumber}</li>
       </div> 
     ))
-    const listApp = this.state.appointments.filter((app)=>app.check === "sended" && this.state.userId === app.doctorId).map((item)=>(
+    const listApp = this.state.appointments.filter((app)=>app.check === "" && this.state.userId === app.doctorId).map((item)=>(
       <div key={item.id} className="prop">
       <h1>hello doctors please i want to have an appointment as soon as possible</h1><br></br>
       <button onClick={(e) => this.accept(e,item.id)}>Accept</button>
