@@ -18,20 +18,22 @@ class PatientHome extends Component {
         render() {
           if (this.state.view === "main") {
             return (
-              <div className="bg">
-                <div>
+              <div >
+                <div className="bg">
+                  <form>
                   <center>
+                  <h1>Welcome Patient</h1>
                     <button className="btn" value="login" onClick={this.changeView}>
                       Login
-                    </button>
+                    </button><br></br>
                     <button className="btn" value="SignIn" onClick={this.changeView}>
                       SignIn
                     </button>
                   </center>
-                  <center>
-                    <p>Hello</p>
-                  </center>
+                    </form>
                 </div>
+                <p>
+We want to provide a better quality of primary care and an immediate medical response to all our patients, thanks to online consultation with doctors. Online medical consultation is a specialty that has grown in recent years. It saves time for patients compared to obtaining appointments with doctors.</p>
               </div>
             );
           } else if (this.state.view === "login") {

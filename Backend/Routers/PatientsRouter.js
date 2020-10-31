@@ -10,12 +10,12 @@ dotenv.config();
 
 const {registerPatValidation , loginPatValidation} = require('./PatienValidation.js')
 
-router.get('/',verify , async (req, res) => {
+router.get('/' , async (req, res) => {
     await Patients.findAll().then((patients) => res.json(patients))
     .catch((err) => console.log(err))
 })
 
-router.get('/:id',verify , async (req, res) => {
+router.get('/:id' , async (req, res) => {
     await Patients.findByPk(req.params.id).then((patients) => res.json(patients))
     .catch((err) => console.log(err))
 })
@@ -23,7 +23,7 @@ router.post("/profile",async(req,res)=>{
     const patient= await Patients.findOne({where:{email:req.body.email}})
     const user=patient.dataValues
     console.log(user)
-    if(!patient) return res.status(400).send("invalid patient")
+    if(!patient) return res.send("invalid patient")
     if(user)  return res.status(200).json(user)
 })
 
@@ -31,7 +31,7 @@ router.post('/register', async (req, res) => {
     const {error} = registerPatValidation(req.body)
     if(error) return res.send(error.details[0].message)
     const emailExist = await Patients.findOne({ where: {email: req.body.email}})
-    if(emailExist) return res.status(400).send('Email already exist')
+    if(emailExist) return res.send('Email already exist')
     const salt = await bcrypt.genSalt(10)
     const hashpassword = await bcrypt.hash(req.body.password , salt)
     await Patients.create({ 
@@ -50,14 +50,14 @@ router.post('/login', async (req, res) => {
     const {error} = loginPatValidation(req.body)
     if(error) return res.send(error.details[0].message)
     const user = await Patients.findOne({ where: {email: req.body.email}})
-    if(!user) return res.status(400).send('Email is not found')
+    if(!user) return res.send('Email is not found')
     const validPass = await bcrypt.compare(req.body.password, user.password)
-    if(! validPass) return res.status(400).send('Invalid password ')
+    if(! validPass) return res.send('Invalid password ')
     const token = jwt.sign({id:user.id},process.env.SECRET_TOKEN)
-   return res.send(200).header('auth_token',token).send({name:user.name})
+   return res.status(200).header('auth_token',token).json({id:user.id , name:user.name})
 })
 
-router.put('/:id',verify , async (req, res) => {
+router.put('/:id' , async (req, res) => {
     Patients.findByPk(req.params.id).then((patients) => {
         patients.update({
             name: req.body.name,
@@ -74,7 +74,7 @@ router.put('/:id',verify , async (req, res) => {
     });
 })
 
-router.delete('/:id',verify , async (req, res) => {
+router.delete('/:id' , async (req, res) => {
     await Patients.findByPk(req.params.id).then((patients) => {
         patients.destroy();
     }).then(() => {
@@ -83,7 +83,7 @@ router.delete('/:id',verify , async (req, res) => {
     .catch((err) => console.log(err))
 });
 
-router.delete('/', verify ,async (req, res) => {
+router.delete('/' , async (req, res) => {
     await Patients.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 });

@@ -1,20 +1,22 @@
 import React, { Component } from "react";
-import axios from "axios";
+
 import Profile from "./Profile.jsx";
 import Messages from "./Messages.jsx";
-import Appointments from "./Appointments.jsx";
-
+// import BookAnAppointment from "./BookAnAppointment.jsx";
+// import SeclectTypeOfDoctor from "./SelectTypeOfDoctor.jsx"
+import SelectTypeOfDoctor from "./SelectTypeOfDoctor.jsx";
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      userId: this.props.userId,
-      userName: this.props.userName,
+      // data: [],
+      userEmail:this.props.email,
+      // userId: this.props.userId,
+      userName: this.props.name,
       check: "profile",
     };
     this.profile = this.profile.bind(this);
-    this.appointment = this.appointment.bind(this);
+    this.bookAnAppointment = this.bookAnAppointment.bind(this);
     this.message = this.message.bind(this);
   }
   componentDidMount() {
@@ -22,10 +24,10 @@ class NavBar extends Component {
       check: "profile",
     });
   }
-  appointment(e) {
+  bookAnAppointment(e) {
     e.preventDefault();
     this.setState({
-      check: "appointment",
+      check: "bookAnAppointment",
     });
   }
   profile(e) {
@@ -47,43 +49,43 @@ class NavBar extends Component {
         <div>
           <div className="navbar">
             <span className="logo" onClick={(e) => this.profile(e)}>
-            🚑
+            {this.state.userName}
             </span>
             <span
               className="nav"
               className="nav-selected"
-              onClick={(e) => this.appointment(e)}
+              onClick={(e) => this.bookAnAppointment(e)}
             >
-              My appointments
+               Book An Appointment
             </span>
             <span className="nav"  className="nav-selected" onClick={(e) => this.message(e)}>
               {" "}
               My messages
             </span>
           </div>
-          <Profile userId={this.state.userId} userName={this.state.userName}/>
+          <Profile name={this.state.userName} email={this.state.userEmail}/>
         </div>
       );
-    } else if (this.state.check === "appointment") {
+    } else if (this.state.check === "bookAnAppointment") {
       return (
         <div>
           <div className="navbar">
             <span className="logo" onClick={(e) => this.profile(e)}>
-            🚑
+            {this.state.userName}
             </span>
             <span
               className="nav"
               className="nav-selected"
-              onClick={(e) => this.appointment(e)}
+              onClick={(e) => this.BookAnAppointment(e)}
             >
-              My appointments
+               Book An Appointment
             </span>
             <span className="nav"  className="nav-selected" onClick={(e) => this.message(e)}>
               {" "}
               My messages
             </span>
           </div>
-          <Appointments userId={this.state.userId} userName={this.state.userName}/>
+          <SelectTypeOfDoctor userId={this.state.userId} name={this.state.userName} email={this.state.userEmail}/>
         </div>
       );
     } else if (this.state.check === "message") {
@@ -91,14 +93,14 @@ class NavBar extends Component {
         <div>
            <div className="navbar">
             <span className="logo" onClick={(e) => this.profile(e)}>
-            🚑
+            {this.state.userName}
             </span>
             <span
               className="nav"
               className="nav-selected"
-              onClick={(e) => this.appointment(e)}
+              onClick={(e) => this.bookAnAppointment(e)}
             >
-              My appointments
+            Book An Appointment
             </span>
             <span className="nav"  className="nav-selected" onClick={(e) => this.message(e)}>
               {" "}

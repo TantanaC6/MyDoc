@@ -12,13 +12,13 @@ dotenv.config();
 
 const { registerDocValidation, loginDocValidation } = require('./DoctorValidation.js')
 
-router.get('/',verify, async (req, res) => {
+router.get('/', async (req, res) => {
 
     await Doctors.findAll().then((doctors) => res.json(doctors))
         .catch((err) => console.log(err))
 })
 
-router.get('/:id',verify, async (req, res) => {
+router.get('/:id', async (req, res) => {
     await Doctors.findByPk( req.params.id).then((doctors) => res.json(doctors))
     .catch((err) => console.log(err))
 
@@ -69,7 +69,7 @@ router.post('/login', async (req, res) => {
     const validPass = await bcrypt.compare(req.body.password, user.password)
     if (!validPass) return res.send('Invalid password ')
     const token = jwt.sign({ id: user.id }, process.env.SECRET_TOKEN)
-    return res.status(200).header('auth_token', token).json({ id: user.id });
+    return res.status(200).header('auth_token', token).json({ id: user.id , name:user.name });
 })
 router.post('/sendemail',async (req, res) => {
    await Doctors.findAll({where:{email:req.body.email}}).then((obj) => {
@@ -106,7 +106,7 @@ router.post('/sendemail',async (req, res) => {
     });
   });
 
-router.put('/:id',verify, async (req, res) => {
+router.put('/:id', async (req, res) => {
 
     Doctors.findByPk(req.params.id).then((doctors) => {
         doctors.update({
@@ -130,7 +130,7 @@ router.put('/:id',verify, async (req, res) => {
 })
 
 
-router.delete('/:id',verify, async (req, res) => {
+router.delete('/:id', async (req, res) => {
 
     await Doctors.findByPk(req.params.id).then((doctors) => {
         doctors.destroy();
@@ -141,7 +141,7 @@ router.delete('/:id',verify, async (req, res) => {
 });
 
 
-router.delete('/', verify,async (req, res) => {
+router.delete('/',async (req, res) => {
     await Doctors.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 

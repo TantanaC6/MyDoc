@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./Profile.jsx"
-import axios from "axios";
-
+import Axios from "axios";
+import NavBar from "./NavBar.jsx";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -40,17 +40,18 @@ handleChnage(e){
       accountBanc: this.state.accountBanc,
       
     };
-    axios.post("http://localhost:3000/patients/register", newPatient) 
+    Axios.post("http://localhost:3000/patients/register", newPatient) 
       .then(() => this.handleChnage(e));
   }
   
   render() {
-    if((this.state.view==="profile") &&(this.state.accountBanc.length) ){
-      return <Profile name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber}  />
+    if(this.state.view==="profile" ){
+      return <NavBar name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber}  />
     }else{
       return (
         <div>
           <center>
+          <br></br><br></br>
            <form onSubmit={(e)=>this.addPatient(e)}> 
            <input type="text" placeholder="name" onChange={(e)=>this.setState({name: e.target.value})} value={this.state.name}/><br></br>
            <input type="text" placeholder="password" onChange={(e)=>this.setState({password: e.target.value})} value={this.state.password}/><br></br>

@@ -7,12 +7,12 @@ const verify = require('./Verification.js')
 
 
 
-router.get('/',verify, async (req, res) => {
+router.get('/', async (req, res) => {
     await Appointments.findAll().then((appointments) => res.json(appointments))
     .catch((err) => console.log(err))
 })
 
-router.get('/:id',verify, async (req, res) => {
+router.get('/:id', async (req, res) => {
     await Appointments.findByPk( req.params.id).then((appointments) => res.json(appointments))
     .catch((err) => console.log(err))
 })
@@ -28,7 +28,7 @@ router.post('/register', async (req, res) => {
         .catch((err) => console.log(err))
 })
 
-router.put('/:id',verify, async (req, res) => {
+router.put('/:id', async (req, res) => {
     Appointments.findByPk(req.params.id).then((appointments) => {
         appointments.update({
 
@@ -39,7 +39,7 @@ router.put('/:id',verify, async (req, res) => {
     .catch((err) => console.log(err))
 })
 
-router.delete('/:id',verify, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     await Appointments.findByPk(req.params.id).then((appointments) => {
         appointments.destroy();
     }).then(() => {
@@ -48,7 +48,7 @@ router.delete('/:id',verify, async (req, res) => {
     .catch((err) => console.log(err))
 });
 
-router.delete('/', verify,async (req, res) => {
+router.delete('/',async (req, res) => {
     await Appointments.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 });
