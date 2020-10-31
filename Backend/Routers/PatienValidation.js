@@ -2,13 +2,13 @@ const joi = require('@hapi/joi')
 
 const registerPatValidation = data =>{
     const validation = joi.object({
-        name:joi.string().min(4).required(),
-        email:joi.string().required().email(),
-        password:joi.string().min(4).required(),
-        address : joi.string().required(),
-        city : joi.string().required(),
-        phoneNumber : joi.string().required(),
-        accountBanc: joi.string().required(),
+        name:joi.string().min(4),
+        email:joi.string().email(),
+        password:joi.string().min(4),
+        address : joi.string(),
+        city : joi.string(),
+        phoneNumber : joi.string(),
+        accountBanc: joi.string(),
     
     })
     return validation.validate(data);
