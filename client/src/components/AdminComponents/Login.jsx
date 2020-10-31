@@ -24,7 +24,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    axios.post('http://localhost:3000/doctors/login', doctor).then((res,req)=>{
+    axios.post('http://localhost:3000/patients/login', doctor).then((res,req)=>{
       if(typeof res.data === "string" ){
         alert("check again please !")
         this.componentDidMount()
