@@ -140,3 +140,15 @@ td {border-top:1px solid black; border-right:1px solid #e0e0e0;}
   width:400px;
   outline:none;
 }
+
+.repo{
+  border:2px solid #EEE;
+  border-radius:5px;
+  background-color:#EEE;
+  padding:10px;
+  margin:0 auto;
+  margin-top:5px;
+  font-size:18px;
+  width:400px;
+  outline:none;
+}
