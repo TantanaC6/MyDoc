@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Profile from "./Profile.jsx";
+import NavBar from "./NavBar.jsx";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -7,6 +8,7 @@ class Login extends Component {
       email: "",
       password: "",
       userId: 0,
+      userName: ""
     }
     this.login=this.login.bind(this);
   }
@@ -15,6 +17,7 @@ class Login extends Component {
       email:"",
       password:"",
       userId: 0 ,
+      userName: ""
     })
   }
   login(e){
@@ -24,6 +27,7 @@ class Login extends Component {
       password: this.state.password
     }
     axios.post('http://localhost:3000/patients/login', patient).then((res,req)=>{
+      console.log(res.data)
       if(typeof res.data === "string" ){
         alert("check again please !")
         this.componentDidMount()
@@ -36,16 +40,17 @@ class Login extends Component {
         this.setState({
           email:"",
           password:"",
-          userId: res.data.id
+          userId: res.data.id, 
+          userName: res.data.name
         })
       } 
     })
   }
   render() {
-    const value = this.state.userId
     
-    if (value === 0 ) {
+    if (this.state.userId === 0 ) {
       return (
+   
         <div>
           <center>
             <br></br> <br></br>
@@ -57,10 +62,10 @@ class Login extends Component {
           </center>
         </div>
       )
-    } else if (value !== 0 ) {
+    } else if (this.state.userId !== 0 ) {
       return (
         <div>
-      <NavBar userId={value}/>
+      <NavBar userId={this.state.userId} userName={this.state.userName}/>
       </div>
       )
     }

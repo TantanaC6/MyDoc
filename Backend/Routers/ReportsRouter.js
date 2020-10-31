@@ -19,9 +19,14 @@ router.get('/:id',verify, async (req, res) => {
 router.post('/register', async (req, res) => {
     await Reports.create({
         patientId: req.body.patientId,
-        doctorId: req.body.doctorId,
-        check : req.body.check,
-        price: req.body.price,
+        name: req.body.name,
+        email: req.body.email,
+        address : req.body.address ,
+        city : req.body.city ,
+        phoneNumber : req.body.phoneNumber ,
+        sex : req.body.sex,
+        bloodtype : req.body.bloodtype,
+        primaryDiagnosis : req.body.primaryDiagnosis,
      })
         .then((user) => res.json(user))
         .catch((err) => console.log(err))
