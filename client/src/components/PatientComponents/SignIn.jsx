@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Profile from "./Profile.jsx"
-import axios from "axios";
+import Axios from "axios";
 import NavBar from "./NavBar.jsx";
 class SignIn extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ handleChnage(e){
       accountBanc: this.state.accountBanc,
       
     };
-    axios.post("http://localhost:3000/patients/register", newPatient) 
+    Axios.post("http://localhost:3000/patients/register", newPatient) 
       .then(() => this.handleChnage(e));
   }
   
