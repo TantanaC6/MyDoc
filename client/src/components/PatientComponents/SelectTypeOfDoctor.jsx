@@ -5,7 +5,7 @@ class SelectTypeOfDoctor extends Component {
         super(props);
         this.state = {
             type:"",
-            
+            email:this.props.email
         }
     }
     checkbox(){
@@ -26,7 +26,7 @@ class SelectTypeOfDoctor extends Component {
     render() {
       
         if(this.state.type.length){
-            return <BookAnAppointment types={this.state.type}/>
+            return <BookAnAppointment types={this.state.type} email={this.state.email}/>
         }else{
             return (
            
