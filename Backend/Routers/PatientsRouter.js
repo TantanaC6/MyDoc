@@ -10,12 +10,12 @@ dotenv.config();
 
 const {registerPatValidation , loginPatValidation} = require('./PatienValidation.js')
 
-router.get('/',verify , async (req, res) => {
+router.get('/' , async (req, res) => {
     await Patients.findAll().then((patients) => res.json(patients))
     .catch((err) => console.log(err))
 })
 
-router.get('/:id',verify , async (req, res) => {
+router.get('/:id' , async (req, res) => {
     await Patients.findByPk(req.params.id).then((patients) => res.json(patients))
     .catch((err) => console.log(err))
 })
@@ -47,10 +47,10 @@ router.post('/login', async (req, res) => {
     const validPass = await bcrypt.compare(req.body.password, user.password)
     if(! validPass) return res.status(400).send('Invalid password ')
     const token = jwt.sign({id:user.id},process.env.SECRET_TOKEN)
-    res.header('auth_token',token).send(token)
+   return res.send(200).header('auth_token',token).send({name:user.name})
 })
 
-router.put('/:id',verify , async (req, res) => {
+router.put('/:id' , async (req, res) => {
     Patients.findByPk(req.params.id).then((patients) => {
         patients.update({
             name: req.body.name,
@@ -67,7 +67,7 @@ router.put('/:id',verify , async (req, res) => {
     });
 })
 
-router.delete('/:id',verify , async (req, res) => {
+router.delete('/:id' , async (req, res) => {
     await Patients.findByPk(req.params.id).then((patients) => {
         patients.destroy();
     }).then(() => {
@@ -76,7 +76,7 @@ router.delete('/:id',verify , async (req, res) => {
     .catch((err) => console.log(err))
 });
 
-router.delete('/', verify ,async (req, res) => {
+router.delete('/' ,async (req, res) => {
     await Patients.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 });

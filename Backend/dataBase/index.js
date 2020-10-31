@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-
 const sequelize = new Sequelize('mydoc', 'root', '123456', {
 
     host: 'localhost',
