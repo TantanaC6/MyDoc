@@ -29,6 +29,13 @@ router.post("/docstate",async(req,res)=>{
   if(!target) return res.status(400).send("No doctor found")
   if(target) return res.status(200).json(target)
 });
+router.post("/docId",async(req,res)=>{
+  const doctor= await Doctors.findOne({where: { id :req.body.docId } })
+  const id=doctor
+  console.log(id)
+  if(!id) return res.status(400).send("No doctor found")
+  if(id) return res.status(200).json(doctor)
+});
 
 router.post("/doctypes",async(req,res)=>{
   const doctorType= await Doctors.findAll({where: { category :req.body.docType } })
