@@ -22,7 +22,6 @@ router.get('/:id' , async (req, res) => {
 router.post("/profile",async(req,res)=>{
     const patient= await Patients.findOne({where:{email:req.body.email}})
     const user=patient.dataValues
-    console.log(user)
     if(!patient) return res.send("invalid patient")
     if(user)  return res.status(200).json(user)
 })
@@ -54,7 +53,7 @@ router.post('/login', async (req, res) => {
     const validPass = await bcrypt.compare(req.body.password, user.password)
     if(! validPass) return res.send('Invalid password ')
     const token = jwt.sign({id:user.id},process.env.SECRET_TOKEN)
-   return res.status(200).header('auth_token',token).json({id:user.id , name:user.name})
+   return res.status(200).header('auth_token',token).json({id:user.id , name:user.name ,email:user.email})
 })
 
 router.put('/:id' , async (req, res) => {

@@ -36,7 +36,7 @@ class ConfirmAppointment extends Component {
             let check=""
             Axios
             .post("/appointments/register",{patientId,doctorId,price,check})
-            .then(res=>this.setState({next:!this.state.next}))
+            .then(res=>this.setState({next:!this.state.next }))
             .catch(err=>console.log(err))
 
       }
@@ -44,7 +44,7 @@ class ConfirmAppointment extends Component {
   
     render() {
         console.log(this.state)
-    
+    // if(this.state.next===true)
              return (
            <div> 
                <h1>Confirm Appointment :</h1>

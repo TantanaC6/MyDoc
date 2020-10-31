@@ -8,7 +8,7 @@ class Login extends Component {
       email: "",
       password: "",
       userId: 0,
-      userName: ""
+      name: ""
     }
     this.login=this.login.bind(this);
   }
@@ -17,7 +17,7 @@ class Login extends Component {
       email:"",
       password:"",
       userId: 0 ,
-      userName: ""
+      name: ""
     })
   }
   login(e){
@@ -38,10 +38,10 @@ class Login extends Component {
         localStorage.setItem('auth_token', token)
         localStorage.getItem('auth_token')
         this.setState({
-          email:"",
+          email:res.data.email,
           password:"",
           userId: res.data.id, 
-          userName: res.data.name
+          name: res.data.name
         })
       } 
     })
@@ -65,7 +65,7 @@ class Login extends Component {
     } else if (this.state.userId !== 0 ) {
       return (
         <div>
-      <NavBar userId={this.state.userId} userName={this.state.userName}/>
+      <NavBar userId={this.state.userId} name={this.state.name} email={this.state.email}/>
       </div>
       )
     }

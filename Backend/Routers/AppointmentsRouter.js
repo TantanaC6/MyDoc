@@ -5,7 +5,12 @@ const Appointments = require('../models/AppointmentSchema.js');
 
 const verify = require('./Verification.js')
 
-
+router.post("/doctors",async(req,res)=>{
+    const doctor= await Appointments.findOne({where:{patientId: req.body.id}})
+    const doc=doctor.dataValues
+    if(!doctor) return res.send("invalid doctor")
+    if(doc)  return res.status(200).json(doc)
+})
 
 router.get('/', async (req, res) => {
     await Appointments.findAll().then((appointments) => res.json(appointments))

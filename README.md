@@ -1,5 +1,7 @@
 # MyDoc
-<!-- A medical health care application that links patients with doctors 
+<!--
+tantana c6
+ A medical health care application that links patients with doctors 
 Application name : MyDoc
 -as a user I can choose either I’m a doctor or a patient 
 -as a patient I can create an account and login 
