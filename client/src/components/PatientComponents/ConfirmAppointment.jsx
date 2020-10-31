@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MedicalReport from "./MedicalReport.jsx"
+// import Profile from "./Profile.jsx";
 import Axios from "axios"
 class ConfirmAppointment extends Component {
     constructor(props) {
@@ -44,11 +44,7 @@ class ConfirmAppointment extends Component {
   
     render() {
         console.log(this.state)
-        if(this.state.next===true){
-             return <MedicalReport patientId={this.state.patientId} name={this.state.name} email={this.state.email}
-                 address={this.state.address} city={this.state.city} phoneNumber={this.state.phoneNumber}
-             />
-        }else {
+    
              return (
            <div> 
                <h1>Confirm Appointment :</h1>
@@ -61,6 +57,6 @@ class ConfirmAppointment extends Component {
         
       
     }
-}
+
 
 export default ConfirmAppointment;

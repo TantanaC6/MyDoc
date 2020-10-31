@@ -31,7 +31,7 @@ router.post('/register', async (req, res) => {
 router.put('/:id', async (req, res) => {
     Appointments.findByPk(req.params.id).then((appointments) => {
         appointments.update({
-
+            check:req.body.check
         }).then((appointments) => {
             res.json(appointments);
         });

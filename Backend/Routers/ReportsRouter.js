@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
         phoneNumber : req.body.phoneNumber ,
         sex : req.body.sex,
         bloodtype : req.body.bloodtype,
-        primaryDiagnosis : req.body.primaryDiagnosis,
+        primaryDiagnosis : req.body.primaryDiagnosis
      })
         .then((user) => res.json(user))
         .catch((err) => console.log(err))
