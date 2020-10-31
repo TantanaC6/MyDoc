@@ -5,9 +5,17 @@ class BookAnAppointment extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            
             docType:this.props.types,
             doctors:[],
             city:"",
+            email:this.props.email
+            // name:this.props.name,
+            // email:this.props.email,
+            // address:this.props.address,
+            // patient:this.props.city,
+            // phoneNumber:this.props.phoneNumber,
+            // accountBanc:this.props.accountBanc
             
         }
     }
@@ -29,7 +37,7 @@ class BookAnAppointment extends Component {
     //         this component will make a post request to the database then filter and render the doctors that match the elements of the state
 
      var {docType}=this.state
-  
+         //set the state with the res
           Axios
            .post("http://localhost:3000/doctors/doctypes",{docType})
            .then(res=>{
@@ -37,14 +45,14 @@ class BookAnAppointment extends Component {
                doctors:res.data,
                
            })})
-           //set the state with the res
+          
            .catch(err=>{throw err})
     }
    
     render() {
         console.log(this.state)
         if(this.state.city){
-            return <Cities state={this.state.city} type={this.state.docType} />
+            return <Cities state={this.state.city} type={this.state.docType} email={this.state.email} />
         } else{
             return (
                 <div>

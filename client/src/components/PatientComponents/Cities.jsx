@@ -8,7 +8,8 @@ class Cities extends Component {
              docType:this.props.type,
             city:this.props.state,
             docs:[],
-            booked:[]
+            booked:[],
+            email:this.props.email
         }
        
     }
@@ -46,7 +47,7 @@ class Cities extends Component {
     render() { 
         console.log(this.state)
         if(this.state.booked.length){
-            return <ConfirmAppointment booked={this.state.booked}/>
+            return <ConfirmAppointment doctorId={this.state.booked[0].id} price={this.state.booked[0].price} email={this.state.email}/>
         } else{
             return (
                 <div id="container">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Messages from './Messages.jsx';
 import SelectTypeOfDoctor from "./SelectTypeOfDoctor.jsx"
+import Axios from "axios"
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -13,9 +14,16 @@ class Profile extends Component {
            city:this.props.city,
            phoneNumber:this.props.phoneNumber,
            accountBanc:this.props.accountBanc,
-           patientId:this.props.userId
+          //  patientId:this.props.userId
         }
     }
+    // componentDidMount(){
+    //   let email=this.state.email
+    //       Axios
+    //       .post("/patients/profile",{email})
+    //       .then(res=>console.log(res))
+    //       .catch(err=>console.log(err))
+    // }
    
   book(){
     this.setState({book:!this.state.book})
@@ -24,11 +32,11 @@ class Profile extends Component {
           this.setState({ view:"messages"})
     }
     render() { 
-      console.log(this.state.patientId)
+    console.log(this.props.email)
       if(this.state.view==="messages"){
             return <Messages/>
         } if(this.state.book===true){
-              return <SelectTypeOfDoctor />
+              return <SelectTypeOfDoctor name={this.state.name} email={this.state.email}  />
         }else{
             return (
                 <div >
@@ -43,7 +51,7 @@ class Profile extends Component {
             <div> email: {this.state.email}</div>
             <div> address :{this.state.address}</div>   
             <div> city : {this.state.city}</div>        
-            <div> phone Number {this.state.phoneNumber}</div>   
+            <div> phone Number: {this.state.phoneNumber}</div>   
                 </div>
             );
         }
