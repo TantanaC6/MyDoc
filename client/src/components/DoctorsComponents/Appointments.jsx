@@ -11,6 +11,7 @@ class Appointments extends Component {
       }
       componentDidMount() {
           axios.get("http://localhost:3000/appointments").then((res)=>{
+              
               this.setState({
                   appointments: res.data,
               })
