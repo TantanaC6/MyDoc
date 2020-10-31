@@ -6,6 +6,7 @@ class Profile extends Component {
     super(props);
     this.state = {
      patient:[],
+     patientId:"",
      appointments:[],
      name:this.props.name,
      email:this.props.email,
@@ -17,8 +18,13 @@ class Profile extends Component {
    let email=this.state.email
              Axios
              .post("http://localhost:3000/patients/profile",{email})
-             .then(res=>this.setState({patient:[res.data]}))
+             .then(res=>this.setState({patient:[res.data],patientId:res.data.id}))
              .catch(err=>console.log(err))
+}
+searchDoc(){
+  let id=this.state.patientId
+  Axios.post("http://localhost:3000/appointments/doctors",{id})
+     .then(res=>this.setState({appointments:[res.data]}))
 }
  
   render() {
@@ -47,6 +53,7 @@ class Profile extends Component {
                   <li>Phone Number :{patient.phoneNumber}</li> 
             </div>
          ))}
+         <button onClick={this.searchDoc.bind(this)}>check my appointments</button>
      </div>
     
   ) 
