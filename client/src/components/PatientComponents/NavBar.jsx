@@ -2,15 +2,17 @@ import React, { Component } from "react";
 
 import Profile from "./Profile.jsx";
 import Messages from "./Messages.jsx";
-import BookAnAppointment from "./BookAnAppointment.jsx";
-
+// import BookAnAppointment from "./BookAnAppointment.jsx";
+// import SeclectTypeOfDoctor from "./SelectTypeOfDoctor.jsx"
+import SelectTypeOfDoctor from "./SelectTypeOfDoctor.jsx";
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      userId: this.props.userId,
-      userName: this.props.userName,
+      // data: [],
+      userEmail:this.props.email,
+      // userId: this.props.userId,
+      userName: this.props.name,
       check: "profile",
     };
     this.profile = this.profile.bind(this);
@@ -61,7 +63,7 @@ class NavBar extends Component {
               My messages
             </span>
           </div>
-          <Profile userId={this.state.userId} userName={this.state.userName}/>
+          <Profile name={this.state.userName} email={this.state.userEmail}/>
         </div>
       );
     } else if (this.state.check === "bookAnAppointment") {
@@ -83,7 +85,7 @@ class NavBar extends Component {
               My messages
             </span>
           </div>
-          <BookAnAppointment userId={this.state.userId} userName={this.state.userName}/>
+          <SelectTypeOfDoctor userId={this.state.userId} name={this.state.userName} email={this.state.userEmail}/>
         </div>
       );
     } else if (this.state.check === "message") {
