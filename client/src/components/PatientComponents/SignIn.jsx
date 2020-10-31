@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./Profile.jsx"
 import axios from "axios";
-
+import NavBar from "./NavBar.jsx";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -45,8 +45,8 @@ handleChnage(e){
   }
   
   render() {
-    if((this.state.view==="profile") &&(this.state.accountBanc.length) ){
-      return <Profile name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber}  />
+    if(this.state.view==="profile" ){
+      return <NavBar name={this.state.name} email={this.state.email} address={this.state.address } city={this.state.city} phoneNumber={this.state.phoneNumber}  />
     }else{
       return (
         <div>
