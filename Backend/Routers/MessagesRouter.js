@@ -5,12 +5,12 @@ const Messages = require('../Models/MessageSchema.js');
 const verify = require('./Verification.js')
 
 
-router.get('/',verify, async (req, res) => {
+router.get('/', async (req, res) => {
     await Messages.findAll().then((messages) => res.json(messages))
     .catch((err) => console.log(err))
 })
 
-router.get('/:id',verify, async (req, res) => {
+router.get('/:id', async (req, res) => {
     await Messages.findByPk( req.params.id).then((messages) => res.json(messages))
     .catch((err) => console.log(err))
 })
@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
         .catch((err) => console.log(err))
 })
 
-router.put('/:id',verify, async (req, res) => {
+router.put('/:id', async (req, res) => {
     Messages.findByPk(req.params.id).then((messages) => {
         messages.update({
 
@@ -36,7 +36,7 @@ router.put('/:id',verify, async (req, res) => {
     .catch((err) => console.log(err))
 })
 
-router.delete('/:id',verify, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     await Messages.findByPk(req.params.id).then((messages) => {
         messages.destroy();
     }).then(() => {
@@ -45,7 +45,7 @@ router.delete('/:id',verify, async (req, res) => {
     .catch((err) => console.log(err))
 });
 
-router.delete('/', verify,async (req, res) => {
+router.delete('/',async (req, res) => {
     await Messages.destroy({where:{},truncate : true}).then(() => res.json("cleared"))
     .catch((err) => console.log(err))
 });

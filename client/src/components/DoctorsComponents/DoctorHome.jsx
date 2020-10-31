@@ -19,21 +19,27 @@ class DoctorHome extends Component {
   render() {
     if (this.state.view === "main") {
       return (
-        <div className="bg">
-          <div>
+        <div >
+          <div className="bg">
             <form>
             <center>
-            <h1>Welcome Doctor</h1>
+            <h1>Welcome Doctor </h1>
               <button className="btn" value="login" onClick={this.changeView}>
                 Login
-              </button>
+              </button><br></br>
               <button className="btn" value="SignIn" onClick={this.changeView}>
                 SignIn
-              </button>
+              </button><br></br>
             </center>
             </form>
+            
           </div>
-        </div>
+          
+          <p>When you use an online consultation service, you can talk to a trained professional from the comfort of your own cabine </p>
+          </div>
+         
+        
+        
       );
     } else if (this.state.view === "login") {
       return <Login />;

@@ -49,6 +49,7 @@ handleChnage(){
       return (
         <div>
           <center>
+          <br></br><br></br>
            <form onSubmit={(e)=>this.addPatient(e)}> 
            <input type="text" placeholder="name" onChange={(e)=>this.setState({name: e.target.value})} value={this.state.name}/><br></br>
            <input type="text" placeholder="password" onChange={(e)=>this.setState({password: e.target.value})} value={this.state.password}/><br></br>
